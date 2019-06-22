@@ -6,7 +6,6 @@ Docker imaji: curl, wget, ping, netcat, nslookup,host, dig, psql, mysql
 Kubernetes
 ```
 kubectl run --rm utils -it --generator=run-pod/v1 --image gulnihalugur/testutils bash
-
 # You will be seeing a bash prompt
 $ psql -h hostname -U test -d test
 ...
