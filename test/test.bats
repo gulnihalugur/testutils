@@ -107,7 +107,3 @@ load test_helper
 	[ "$status" -eq 0 ]
 }
 
-@test "cqlsh" {
-	run check_cmd "cqlsh"
-	[ "$status" -eq 0 ]
-}
