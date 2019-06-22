@@ -2,7 +2,6 @@
 
 load test_helper
 
-
 @test "httpie" {
   run check_cmd "http"
   [ "$status" -eq 0 ]
