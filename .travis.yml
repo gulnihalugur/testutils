@@ -1,0 +1,12 @@
+sudo: required
+services:
+- docker
+before_install:
+- git clone https://github.com/bats-core/bats-core.git
+- sudo ./bats-core/install.sh /usr/local
+script:
+- docker build -t gulnihalugur/testutils -t utils-test .
+- bats test/test.bats
+deploy:
+  provider: script
+  script: bash docker-push
