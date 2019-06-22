@@ -2,6 +2,10 @@
 
 load test_helper
 
+@test "eksikkomut" {
+  run check_cmd "olmayankomut"
+  [ "$status" -eq 0 ]
+}
 
 @test "httpie" {
   run check_cmd "http"
