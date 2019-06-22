@@ -1,6 +1,8 @@
 sudo: required
 services:
 - docker
+addons:
+  srcclr: true
 before_install:
 - git clone https://github.com/bats-core/bats-core.git
 - sudo ./bats-core/install.sh /usr/local
