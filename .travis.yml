@@ -1,15 +1,21 @@
 sudo: required
+language: ruby
 services:
-- docker
-addons:
-    srcclr:
-        debug: true
+ - docker
 before_install:
-- git clone https://github.com/bats-core/bats-core.git
-- sudo ./bats-core/install.sh /usr/local
+  - git clone https://github.com/bats-core/bats-core.git
+  - sudo ./bats-core/install.sh /usr/local
+  - wget https://raw.githubusercontent.com/singularityhub/stools/master/docker-compose.yml
 script:
-- docker build -t gulnihalugur/testutils -t utils-test .
-- bats test/test.bats
+  - docker build -t gulnihalugur/testutils -t utils-test .
+  - bats test/test.bats
+  - docker-compose up -d clair-db
+  - docker-compose up -d clair-scanner
+  - sleep 3
+# Perform the build from your Singularity file, we are at the base of the repo
+  - docker exec -it clair-scanner singularity build container.simg Singularity
+# Run sclair in the container to perform the scan
+  - docker exec -it clair-scanner sclair container.simg
 deploy:
   provider: script
   script: bash docker-push
