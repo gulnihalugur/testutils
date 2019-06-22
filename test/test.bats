@@ -2,10 +2,6 @@
 
 load test_helper
 
-@test "curl2" {
-  run check_cmd "olmayankomut"
-  [ "$status" -eq 0 ]
-}
 
 @test "httpie" {
   run check_cmd "http"
